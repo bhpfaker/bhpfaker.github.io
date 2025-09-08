@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比特先锋队</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5; /* 更浅的背景色 */
+            background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); /* 添加渐变背景 */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); /* 使用渐变色作为标题背景 */
+            color: #fff;
+            text-align: center;
+            padding: 2rem 1rem; /* 调整内边距 */
+            margin-bottom: 2rem;
+            border-radius: 10px; /* 添加圆角 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 添加阴影 */
+        }
+
+        header h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem; /* 调整主标题大小 */
+        }
+
+        header .slogan {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.9; /* 稍微降低不透明度 */
+        }
+
+
+        .intro {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 25px; /* 增加卡片间距 */
+        }
+
+        .member-card {
+            background: #fff;
+            border-radius: 10px; /* 统一卡片圆角 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            flex: 1 1 280px; /* 调整基础宽度以适应更多成员 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 增加阴影过渡效果 */
+            display: flex;
+            flex-direction: column; /* 确保内容垂直排列 */
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px); /* 增加悬停提升高度 */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* 增强悬停阴影 */
+        }
+
+        .member-img-container {
+            width: 100%;
+            height: 220px; /* 固定图片容器高度 */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee; /* 图片加载前的背景色 */
+        }
+
+        .member-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease; /* 图片缩放过渡 */
+        }
+
+         .member-card:hover .member-img {
+             transform: scale(1.05); /* 悬停时轻微放大图片 */
+         }
+
+
+        .member-info {
+            padding: 1.5rem;
+            flex-grow: 1; /* 使信息区域填充剩余空间 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .member-info h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .member-info .role {
+            color: #3498db; /* 改变角色颜色 */
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .member-info p {
+            margin-bottom: 1rem;
+            flex-grow: 1; /* 描述文本填充空间 */
+        }
+
+        .social-links {
+            margin-top: auto; /* 将社交链接推到底部 */
+        }
+
+        .social-links a {
+            color: #2980b9;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+            color: #1a5276;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+            margin-top: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            backdrop-filter: blur(5px); /* 背景模糊效果 */
+        }
+
+        /* 响应式调整 */
+        @media screen and (max-width: 768px) {
+            .team-members {
+                flex-direction: column;
+                align-items: center;
+            }
+            .member-card {
+                width: 95%;
+                max-width: 400px; /* 在小屏幕上限制最大宽度 */
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            header .slogan {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>比特先锋队</h1>
+            <p class="slogan">零壹编织代码，团队铸就卓越</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h2>关于我们</h2>
+            <p>我们是比特先锋队，一支充满活力与创新精神的技术团队。我们专注于前沿技术探索与应用，致力于通过高效的协作和精湛的技艺，将二进制的“零”与“壹”编织成解决复杂问题的强大代码，共同铸就非凡的成就与卓越的解决方案。</p>
+        </section>
+
+        <section class="team">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">核心成员</h2>
+            <div class="team-members">
+                <!-- 队长 -->
+                <div class="member-card">
+                    <div class="member-img-container">
+                         <img src="https://img.alicdn.com/imgextra/i1/2208286400487/O1CN01VcYV9x21u9822W1_!!2208286400487.jpg" alt="曾俊翔 - 队长" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3>曾俊翔</h3>
+                        <span class="role">队长</span>
+                        <p>团队的领航者，负责制定战略方向，协调团队资源，确保项目目标的达成。拥有卓越的领导力和决策能力。</p>
+                        <div class="social-links">
+                            <a href="mailto:zengjunxiang@example.com">邮箱</a>
+                            <a href="#">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技术支持 -->
+                <div class="member-card">
+                    <div class="member-img-container">
+                        <img src="https://img.alicdn.com/imgextra/i2/2208290091951/O1CN017D7d9W1zVrR1VrR1_!!2208290091951.jpg" alt="张蔚翔 - 技术支持" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3>张蔚翔</h3>
+                        <span class="role">技术支持</span>
+                        <p>团队的技术后盾，精通多种技术栈，为项目提供坚实的技术保障和疑难问题解决方案。</p>
+                        <div class="social-links">
+                            <a href="mailto:zhangweixiang@example.com">邮箱</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 团队成员 1 -->
+                <div class="member-card">
+                    <div class="member-img-container">
+                       <img src="https://img.alicdn.com/imgextra/i3/2208293783415/O1CN01VcYV9x21u9822W1_!!2208293783415.jpg" alt="黄裕 - 团队成员" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3>黄裕</h3>
+                        <span class="role">团队成员</span>
+                        <p>团队的核心开发力量，负责关键模块的设计与实现，代码功底扎实，逻辑思维清晰。</p>
+                        <div class="social-links">
+                             <a href="mailto:huangyu@example.com">邮箱</a>
+                             <a href="#">个人博客</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 团队成员 2 -->
+                <div class="member-card">
+                   <div class="member-img-container">
+                       <img src="https://img.alicdn.com/imgextra/i4/2208297474879/O1CN017D7d9W1zVrR1VrR1_!!2208297474879.jpg" alt="缪松博 - 团队成员" class="member-img">
+                   </div>
+                    <div class="member-info">
+                        <h3>缪松博</h3>
+                        <span class="role">团队成员</span>
+                        <p>团队的创新先锋，专注于新技术的研究与应用，为团队带来源源不断的创意和活力。</p>
+                        <div class="social-links">
+                            <a href="mailto:miaosongbo@example.com">邮箱</a>
+                            <a href="#">Twitter</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <p>&copy; 2023 比特先锋队. 保留所有权利.</p>
+    </footer>
+</body>
+</html>
+
+
+
